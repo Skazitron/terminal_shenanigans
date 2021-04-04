@@ -27,6 +27,13 @@ struct Movable
     struct Window * win;
 };
 
+// event struct
+struct Event
+{
+
+};
+
+
 void background_fill(struct Window * win, char back);
 
 // returns a window pointer to the newly created window
