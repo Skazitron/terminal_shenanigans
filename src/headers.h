@@ -30,7 +30,13 @@ struct Movable
 // event struct
 struct Event
 {
+    
+};
 
+// event queue
+struct Event_Queue
+{
+    struct Event * event;
 };
 
 
