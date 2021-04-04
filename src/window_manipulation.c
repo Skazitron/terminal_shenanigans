@@ -1,5 +1,19 @@
 #include "headers.h"
 
+void background_fill(struct Window * win, char back) 
+{
+	for (int i = 0; i < win->y; i++)
+	{
+		for (int j = 0; j < win->x; j++)
+		{
+			win->pixel[i][j].perishable = 1;
+			win->pixel[i][j].immovable = 0;
+			win->pixel[i][j].p = back;
+		}
+
+	}
+
+}
 
 struct Window * createWindow(int x, int y)
 {
@@ -32,5 +46,20 @@ void print_window(struct Window * new_win)
 		}
 
 		printw("\n");
+	}
+}
+
+
+void create_immovable_block(int s_x, int e_x, int s_y, int e_y,
+        struct Window * win, char P) 
+{
+	for (int i = s_y; i < e_y; i++)
+	{
+		for (int j = s_x; j < e_x; j++)
+		{
+			
+			win->pixel[i][j].p = P;
+			win->pixel[i][j].immovable = 1;
+		}
 	}
 }

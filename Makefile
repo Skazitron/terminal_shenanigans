@@ -10,12 +10,17 @@ _OBJ_PATH = $(wildcard obj/*.o)
 $(ODIR)/%.o: src/%.c
 	gcc -c -o $@ $< $(packs)
 
-objects = main.o window_manipulation.o test.o
-pref_objecst = $(addprefix obj/, $(objects))
+objects = main.o window_manipulation.o movable_objects.o 
+pref_objects = $(addprefix obj/, $(objects))
 
-program: $(pref_objecst) $(headers)
+program: dirmake $(pref_objects) $(headers)
 	gcc -o program $+ $(packs) $(extra_flags)
-.PHONY: clean
+
+fast: $(pref_objects) $(headers)
+	gcc -O3 -o program $+ $(packs) $(extra_flags)
+
+.PHONY: clean dirmake
 
 clean:
 	rm obj/* program -r
+

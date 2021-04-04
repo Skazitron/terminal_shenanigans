@@ -2,12 +2,16 @@
 #include <unistd.h> 
 #include <stdlib.h>
 
+char background;
+
 int main()
 {
 
+	background = '_';
+
     int x,y;
 
-    x = 60;
+    x = 100;
     y = 30;
 
 	// create a new window
@@ -16,22 +20,28 @@ int main()
 	
 	// create a new movable object 
 	struct Movable * mov = create_movable_object('A', newWin);
-
+	
 
 	initscr();			/* Start curses mode 		  */
 	
-	garbage_fill(newWin, '_');
+	background_fill(newWin, background);
+	create_immovable_block(0, 100, 20, 30, newWin, 'O');
+	create_immovable_block(80, 90, 0, 10, newWin, 'O');
 	print_window(newWin);
 	
 	refresh();			/* Print it on to the real screen */
 	char a;
 	while ((a = getch()) != 'q')
 	{
-		newWin->pixel[10][10].p = a;
+		
+		background_fill(newWin, background);
+		create_immovable_block(80, 90, 0, 10, newWin, 'O');
+		create_immovable_block(0, 100, 20, 30, newWin, 'O');
 		clear();
+		move_object(mov, a);
+		display_mov_object(mov);
 		print_window(newWin);
 		refresh();
-		sleep(1.0/30.0);
 	}
 	endwin();			/* End curses mode		  */
 
