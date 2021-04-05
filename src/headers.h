@@ -25,7 +25,10 @@ struct Movable
     char p;
     int p_x, p_y;
     struct Window * win;
+    struct Movable * next;
 };
+
+
 
 // event struct
 struct Event
@@ -58,11 +61,17 @@ void move_object(struct Movable * mov, char);
 void display_mov_object(struct Movable * mov);
 
 // creates a movable object window
-struct Movable * create_movable_object(char, struct Window *);
+struct Movable * create_movable_object(char, struct Window *, int, int);
 
 // create immovable block (starting index, ending index for
 // both x and y
 void create_immovable_block(int s_x, int e_x, int s_y, int e_y, 
         struct Window *, char P);
 
+/*
+ * Call this function to move an entire block
+ */
+void move_object_block(struct Movable * mov_b, struct Window *,
+        char);
 
+int check_mov_available(struct Movable * m, char move);
