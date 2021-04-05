@@ -15,6 +15,16 @@ void background_fill(struct Window * win, char back)
 
 }
 
+void border_builder(struct Window * win, char border)
+{
+	int win_y = win->y;
+	int win_x = win->x;
+	create_immovable_block(0, 1, 0, win_y, win, border);
+	create_immovable_block(0, win_x, 0, 1, win, border);
+	create_immovable_block(win_x - 1, win_x, 0, win_y, win, border);
+	create_immovable_block(0, win_x, win_y - 1, win_y, win, border);
+}
+
 struct Window * createWindow(int x, int y)
 {
     struct Window * win = (struct Window *) malloc(sizeof(struct Window));

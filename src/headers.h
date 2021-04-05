@@ -48,9 +48,6 @@ void background_fill(struct Window * win, char back);
 // returns a window pointer to the newly created window
 struct Window * createWindow(int, int);
 
-// fills the window with garbage just for testing
-void garbage_fill(struct Window *, char);
-
 // prints the window
 void print_window(struct Window *);
 
@@ -74,4 +71,8 @@ void create_immovable_block(int s_x, int e_x, int s_y, int e_y,
 void move_object_block(struct Movable * mov_b, struct Window *,
         char);
 
+// adds another layer of abstraction to the move block function
 int check_mov_available(struct Movable * m, char move);
+
+// Make America Great Again?
+void border_builder(struct Window * win, char style);
