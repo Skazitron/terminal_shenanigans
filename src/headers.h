@@ -43,6 +43,17 @@ struct Event_Queue
 };
 
 
+// sprite animation
+struct Animation
+{
+    struct Movable * curr_anim;
+    struct Animation * next_state;
+};
+
+// a basic error handler
+void error_hander(char * message);
+
+
 void background_fill(struct Window * win, char back);
 
 // returns a window pointer to the newly created window
@@ -81,3 +92,9 @@ void border_builder(struct Window * win, char style);
 struct Movable * block_from_smp(FILE * f, int s_x, int s_y,
         struct Window *);
 
+// creates a cyclical animation
+struct Animation * cycle_state(int s_x, int s_y, 
+        struct Window * win, int numargs, ...);
+
+
+void move_animation_chain(char a, int num_nodes, struct Animation * animation);

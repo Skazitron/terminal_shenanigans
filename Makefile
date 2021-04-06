@@ -11,6 +11,9 @@ $(ODIR)/%.o: src/%.c
 	gcc -c -o $@ $< $(packs)
 
 objects = main.o window_manipulation.o movable_objects.o pmp_parser.o
+objects += event_queue.o
+
+
 pref_objects = $(addprefix obj/, $(objects))
 
 program: include $(pref_objects) $(headers)

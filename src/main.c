@@ -23,28 +23,37 @@ int main()
     struct Window * newWin = createWindow(x,y);
 	
 	// create a new movable object
-    FILE *smp_file = fopen("./assets/simp.smp", "r");
-	struct Movable * mov = block_from_smp(smp_file, 10, 10, newWin);
+	
+	struct Animation * cyc = cycle_state(5,5,newWin, 3,
+			"./assets/1.smp",
+			"./assets/2.smp",
+			"./assets/3.smp");
 
 	initscr();			/* Start curses mode 		  */
 	
 	background_fill(newWin, background);
 	create_immovable_block(80, 90, 0, 10, newWin, 'X');
 	create_immovable_block(0, 80, 20, 30, newWin, 'X');
+
+
 	border_builder(newWin, '+');
 	print_window(newWin);
+
+	int show = 0;
 	
 	refresh();			/* Print it on to the real screen */
 	char a;
 	while ((a = getch()) != 'q')
 	{
+
 		
 		background_fill(newWin, background);
 		create_immovable_block(80, 90, 0, 10, newWin, 'X');
 		create_immovable_block(0, 80, 20, 30, newWin, 'X');
 		clear();
-		move_object_block(mov, newWin, a);
-		display_mov_object(mov);
+		move_animation_chain(a, 3, cyc); 
+		display_mov_object(cyc->curr_anim);
+		cyc = cyc->next_state;
 		border_builder(newWin, '+');
 		print_window(newWin);
 		refresh();
@@ -56,3 +65,11 @@ int main()
 
 }
 
+
+void error_hander(char * message)
+{
+
+	printf("The program failed: %s\n", message);
+	exit(1);
+
+}
