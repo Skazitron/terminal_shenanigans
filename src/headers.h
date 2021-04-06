@@ -76,3 +76,8 @@ int check_mov_available(struct Movable * m, char move);
 
 // Make America Great Again?
 void border_builder(struct Window * win, char style);
+
+// creates a movable block out of the pmp file
+struct Movable * block_from_pmp(FILE * f, int s_x, int s_y,
+        struct Window *);
+

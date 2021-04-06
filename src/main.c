@@ -23,11 +23,8 @@ int main()
     struct Window * newWin = createWindow(x,y);
 	
 	// create a new movable object 
-	struct Movable * mov = create_movable_object('A', newWin, 50, 15);
-	struct Movable * mov2 = create_movable_object('O', newWin, 51, 15);
-	struct Movable * mov3 = create_movable_object('D', newWin, 49, 15);
-	mov->next = mov2;
-	mov2->next = mov3;
+	FILE * pmp_file = fopen("./assets/example.pmp", "r");
+	struct Movable * mov = block_from_pmp(pmp_file, 10, 10, newWin);
 
 	initscr();			/* Start curses mode 		  */
 	

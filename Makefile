@@ -10,10 +10,10 @@ _OBJ_PATH = $(wildcard obj/*.o)
 $(ODIR)/%.o: src/%.c
 	gcc -c -o $@ $< $(packs)
 
-objects = main.o window_manipulation.o movable_objects.o 
+objects = main.o window_manipulation.o movable_objects.o pmp_parser.o
 pref_objects = $(addprefix obj/, $(objects))
 
-program: dirmake $(pref_objects) $(headers)
+program: include $(pref_objects) $(headers)
 	gcc -o program $+ $(packs) $(extra_flags)
 
 fast: $(pref_objects) $(headers)
