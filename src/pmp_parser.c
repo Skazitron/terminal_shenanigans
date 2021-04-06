@@ -1,6 +1,6 @@
 #include "headers.h"
 
-struct Movable * block_from_pmp(FILE * f, int s_x, int s_y,
+struct Movable * block_from_smp(FILE * f, int s_x, int s_y,
 		struct Window * window)
 {
 	
@@ -30,7 +30,7 @@ struct Movable * block_from_pmp(FILE * f, int s_x, int s_y,
 	char buffer[2];
 	while (fscanf(f, "%c", buffer) != EOF)
 	{
-
+		fprintf(log_file, "%c", buffer[0]);
 
 		if (buffer[0] == ' ') 
 			x_count += 1; 
@@ -42,16 +42,19 @@ struct Movable * block_from_pmp(FILE * f, int s_x, int s_y,
 
 		else 
 		{
-			if (m)
+			if (m != NULL)
 			{
+
 				m->next = create_movable_object(buffer[0], window,
-						x_count + s_x, y_count + s_y);
+						x_count + s_x , y_count + s_y);
 				m = m->next;
+				x_count += 1;
 			} 
 			else
 			{
 				m = create_movable_object(buffer[0], window,
 						x_count + s_x, y_count + s_y);
+				x_count += 1;
 				head = m;
 			}
 		}

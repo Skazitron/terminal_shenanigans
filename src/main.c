@@ -22,9 +22,9 @@ int main()
 
     struct Window * newWin = createWindow(x,y);
 	
-	// create a new movable object 
-	FILE * pmp_file = fopen("./assets/example.pmp", "r");
-	struct Movable * mov = block_from_pmp(pmp_file, 10, 10, newWin);
+	// create a new movable object
+    FILE *smp_file = fopen("./assets/simp.smp", "r");
+	struct Movable * mov = block_from_smp(smp_file, 10, 10, newWin);
 
 	initscr();			/* Start curses mode 		  */
 	
