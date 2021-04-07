@@ -78,6 +78,7 @@ int check_mov_available(struct Movable * mov, char move)
 	return 0;
 }
 
+
 void move_object(struct Movable * mov, char move)
 {
 	if (move == 'h')

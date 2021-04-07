@@ -24,10 +24,11 @@ int main()
 	
 	// create a new movable object
 	
-	struct Animation * cyc = cycle_state(5,5,newWin, 3,
+	struct Animation * cyc = cycle_state(5,5,newWin, 4,
 			"./assets/1.smp",
 			"./assets/2.smp",
-			"./assets/3.smp");
+			"./assets/3.smp",
+			"./assets/4.smp");
 
 	initscr();			/* Start curses mode 		  */
 	
@@ -51,7 +52,7 @@ int main()
 		create_immovable_block(80, 90, 0, 10, newWin, 'X');
 		create_immovable_block(0, 80, 20, 30, newWin, 'X');
 		clear();
-		move_animation_chain(a, 3, cyc); 
+		move_animation_chain(a, 4, cyc); 
 		display_mov_object(cyc->curr_anim);
 		cyc = cyc->next_state;
 		border_builder(newWin, '+');
